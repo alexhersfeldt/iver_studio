@@ -44,8 +44,7 @@ public class User {
                     name = "item_id", referencedColumnName = "id"))
     private Set<Item> interested_items = new HashSet<>();
 
-    public User(UserRequest request) {
-        this.name = request.getName();
-        this.password = request.getPassword();
+    public void addItemToInterestedItems(Item item) {
+        interested_items.add(item);
     }
 }

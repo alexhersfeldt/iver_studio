@@ -1,13 +1,13 @@
 package alexhersfeldt.iver_studio.User.Service;
 
 
+import alexhersfeldt.iver_studio.Item.Entity.Item;
 import alexhersfeldt.iver_studio.User.Entity.User;
 import alexhersfeldt.iver_studio.User.Repo.UserRepo;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -35,9 +35,25 @@ public class UserServiceImpl implements UserService {
                         HttpStatus.NOT_FOUND,
                         "Invalid login"));
     }
-    public Set<?> getInterestedItems(int id) {
-        Optional<User> user = userRepo.findById(id);
-
-
+    public Set<Item> getInterestedItems(User user) {
+        return user.getInterested_items();
     }
+
+    public Set<Item> addItemToInterested(User user, Item item) {
+        if(!user.getInterested_items().contains(item)) {
+            user.addItemToInterestedItems(item);
+            user = userRepo.save(user);
+        }
+        return user.getInterested_items();
+    }
+
+    @Override
+    public User getById(int id) {
+        User user = userRepo.findById(id).orElseThrow();
+        return user;
+    }
+
+
 }
+
+

@@ -14,7 +14,7 @@
     <name>iver_studio</name>
     <description>iver_studio</description>
     <properties>
-        <java.version>8</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
 
@@ -51,6 +51,13 @@
             <artifactId>modelmapper</artifactId>
             <version>2.4.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
